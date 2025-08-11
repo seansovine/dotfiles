@@ -1,0 +1,66 @@
+/* Define constants. */
+:root {
+	--custom-color: #499dce;
+	--color-cyan: #73bbb2;
+	--color-yellow: #e5b567;
+	--color-blue: #6c99bb;
+
+	--item-margin: 15px;
+}
+
+/* HR Horizontal Rule LIVE PREVIEW */
+.markdown-source-view.mod-cm6 hr {
+	border-top: 1px solid;
+	border-color: var(--color-cyan);
+}
+
+/* HR Horizontal Rule READING VIEW */
+.markdown-preview-view hr {
+	border-top: 1px solid;
+	border-color: var(--color-cyan);
+}
+
+body {
+	/* Color for all bold font text. */
+	--bold-color: var(--color-yellow);
+	--italic-color: var(--color-yellow);
+
+	/* --list-edit-offset:-0.85em; */
+	--list-indent:0.75em
+}
+
+/* Color of filename at top of preview page. */
+.inline-title {
+	color: var(--color-yellow);
+}
+
+.markdown-preview-view .inline-title {
+	margin-bottom: 25px;
+}
+
+.tag {
+	color: var(--color-yellow);
+}
+
+.markdown-preview-view p,hr,ul {
+	margin-top: var(--item-margin);
+	margin-bottom: var(--item-margin);
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+ul.has-list-bullet {
+	margin-top: var(--item-margin);
+	margin-bottom: var(--item-margin);
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+/* Remove the arrow and space after hyperlinks. See:
+     https://forum.obsidian.md/t/why-does-obsidian-show-a-space-after-every-link/33559
+*/
+
+.external-link {
+	background-image: none;
+	padding: 0;
+  }
