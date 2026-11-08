@@ -4,15 +4,20 @@
 # common to .bashrc and .zshrc
 # -----------------------------------------
 
+export F407_AUDIO="/home/sean/STM32Cube/Example/Audio_playback_and_record_modified"
+
 ###################################
 # Config for installed utilities. #
 ###################################
 
-# Add go install binaries to PATH
-export PATH=${PATH}:$(go env GOPATH)/bin
+# Google depot tools
+export PATH=/home/sean/opt/depot_tools:$PATH
 
-# Add Arm GNU toolchain to PATH
-export PATH="$PATH:$HOME/opt/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin"
+# # Add go install binaries to PATH
+# export PATH=${PATH}:$(go env GOPATH)/bin
+
+# # Add Arm GNU toolchain to PATH
+# export PATH="$PATH:$HOME/opt/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin"
 
 # Pyenv setup
 export PYENV_ROOT="$HOME/.pyenv"
@@ -20,32 +25,41 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-alias pea='pyenv activate'
+alias daily_python='pyenv activate daily_python'
+
+# alias pea='pyenv activate'
 
 # Add TeXLive and ~/bin/msp to PATH
-export PATH="/home/sean/bin/msp:/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+# export PATH="/home/sean/bin/msp:/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
 
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/sean/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/sean/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/sean/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/sean/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/sean/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/sean/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/sean/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/sean/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
 
-# Setup Node Version Manager
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# # Setup Node Version Manager
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 #################
 # My shortcuts. #
 #################
+
+alias nvc='nordvpn connect'
+alias nvd='nordvpn disconnect'
+
+# Clipboard from terminal.
+
+alias cb='xclip -selection clipboard'
 
 # Useful folder vars.
 
@@ -56,11 +70,11 @@ export CODE="/home/sean/Code_projects"
 alias c="clear"
 alias h='history'
 
+alias spc='df -h /'
+alias rp='realpath'
 alias rph="realpath ."
 alias hdsp="df -h /"
-
 alias cpr='sudo cp -rp'
-
 alias xdo='xdg-open'
 
 # Fancy rust command replacements
@@ -75,10 +89,18 @@ alias dhere='dust -d 1 .'
 
 alias chc="code . && c"
 alias ch="code ."
-
 alias cf="clang-format -i -style=file"
-
 alias wgets="wget --show-progress"
+
+alias ubuntu="cat /etc/upstream-release/lsb-release"
+
+# Raspberry Pi communication.
+
+function rpi {
+  ssh rpi3bp
+}
+
+alias tio0='tio /dev/ttyUSB0'
 
 # Shell shortcuts
 
@@ -117,6 +139,8 @@ alias gp="git push"
 # Shows gitignored files in directory along with rule.
 alias gsi='git check-ignore -v -- *'
 
+alias gsinit="git submodule update --init --recursive"
+
 # Directory change shortcuts
 
 export CODE_DIR="/home/sean/Code_projects"
@@ -128,18 +152,25 @@ alias ccode='cd $CODE_DIR'
 alias ccodea='cd $CODE_DIR/A-K'
 alias ccodel='cd $CODE_DIR/L-Z'
 
+alias cdoc='cd $HOME/Documents'
+alias cdow='cd $HOME/Downloads'
+
+alias cegu='cd $CODE_DIR/wgpu_grapher/egui_wgpu_grapher'
+
 alias cnum='cd $CODE_DIR/L-Z/numerical_projects/'
 alias cgop='cd $CODE_DIR/A-Z/go_projects/'
 alias crst='cd $CODE_DIR/L-Z/rust_projects/'
 alias cclz='cd $CODE_DIR/L-Z/rust_clz_xml'
-alias cres='cd $CODE_DIR/L-Z/resumes_cover_letters'
+alias cres='cd $CODE_DIR/alpha_L-Z/resumes_cover_letters'
 alias cogl='cd $CODE_DIR/L-Z/opengl_examples'
 alias ccpp='cd $CODE_DIR/A-K/cpp_ideas'
 alias cbin='cd $CODE_DIR/A-K/binary_parsing'
 alias cdsp='cd $CODE_DIR/A-K/audio_dsp'
 
-alias cnot='cd $CODE_DIR/dev_notes'
+alias cqm='cd $CODE_DIR/alpha_L-Z/math_fun/quine_mccluskey'
 
+alias cnot='cd $CODE_DIR/dev_notes'
+alias cers='cd $CODE_DIR/embedded_rust'
 alias cinf='cd $CODE_DIR/info_manager'
 
 alias coss='cd $CODE_OSS_DIR'
@@ -147,6 +178,13 @@ alias cosc='cd $CODE_OSS_DIR/c_cpp'
 alias cosg='cd $CODE_OSS_DIR/golang'
 alias copy='cd $CODE_OSS_DIR/python'
 alias cojs='cd $CODE_OSS_DIR/javascript'
+alias cogr='cd $CODE_OSS_DIR/graphics'
+
+alias cmfm='cd $CODE_OSS_DIR/c_cpp/mfem'
+alias clin='cd $CODE_OSS_DIR/c_cpp/linux'
+alias cker='cd $CODE_OSS_DIR/c_cpp/linux_dev/kernel_notes'
+alias cldv='cd $CODE_OSS_DIR/c_cpp/linux_dev'
+alias cgrub='cd $CODE_OSS_DIR/c_cpp/linux_dev/grub'
 
 export RUST_OSS_DIR="$CODE_OSS_DIR/rust"
 
@@ -161,6 +199,9 @@ function lshdoss {
   l "$HD_OSS_DIR/$1"
 }
 
+export OBS_DIR="$HOME/Documents/Obsidian/Main"
+alias coobs='code $OBS_DIR'
+
 # Docker shortcuts
 
 alias dkc="docker compose"
@@ -169,8 +210,10 @@ alias dkc="docker compose"
 
 alias cbr="cargo build --release"
 alias crr="cargo run --release"
+alias cto="cargo test -- --show-output"
 
 alias nfmt="cargo +nightly fmt"
+alias pre="nfmt && cargo clippy"
 
 ####################
 # Shell functions. #
@@ -195,7 +238,7 @@ function folsize {
 
 # search for filenames containing string
 function nsearch {
-  find . -iname "*$1"
+  find . -iwholename "*$1"
 }
 
 # Split a line into words on whitespace.
@@ -238,11 +281,11 @@ function qbeaver {
 }
 
 function gv {
-    wgets "$1" -O 2160p.h264."$2".mp4
+    wgets "$1" -O "$2".mp4
 }
 
 function search {
-    find "$1" -iname "*$2*"
+    find "$1" -iwholename "*$2*"
 }
 
 function grepe {
@@ -259,6 +302,12 @@ export PICO_SDK_PATH=/home/sean/pico/pico-sdk
 export PICO_EXAMPLES_PATH=/home/sean/pico/pico-examples
 export PICO_EXTRAS_PATH=/home/sean/pico/pico-extras
 export PICO_PLAYGROUND_PATH=/home/sean/pico/pico-playground
+
+# BeaglePlay related
+
+export BEAGLE_IP="192.168.1.215"
+
+alias ssbgl='ssh sean@$BEAGLE_IP'
 
 # Notify shell user this script was run.
 echo "Common shell configuration loaded!"

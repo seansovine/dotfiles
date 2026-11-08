@@ -10,7 +10,14 @@ export ZSH="$HOME/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="linuxonly"
+
+# Long-term favorite here:
 ZSH_THEME="trapd00r"
+
+# Trying more recently.
+#ZSH_THEME="sporty_256"
+#ZSH_THEME="darkblood"
+#ZSH_THEME="sonicradish"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -115,3 +122,10 @@ export LESS="-F -X -R"
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh)"
+
+# fnm
+FNM_PATH="/home/sean/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "$(fnm env --shell zsh)"
+fi
