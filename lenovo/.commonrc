@@ -1,0 +1,343 @@
+# shellcheck shell=bash
+# -----------------------------------------
+# This contains definitions and commands
+# common to .bashrc and .zshrc
+# -----------------------------------------
+
+export F407_AUDIO="/home/sean/STM32Cube/Example/Audio_playback_and_record_modified"
+
+###################################
+# Config for installed utilities. #
+###################################
+
+# Google depot tools
+export PATH=/home/sean/opt/depot_tools:$PATH
+
+# # Add go install binaries to PATH
+# export PATH=${PATH}:$(go env GOPATH)/bin
+
+# # Add Arm GNU toolchain to PATH
+# export PATH="$PATH:$HOME/opt/arm-gnu-toolchain-13.3.rel1-x86_64-arm-none-eabi/bin"
+
+# Pyenv setup
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+alias daily_python='pyenv activate daily_python'
+
+# alias pea='pyenv activate'
+
+# Add TeXLive and ~/bin/msp to PATH
+# export PATH="/home/sean/bin/msp:/usr/local/texlive/2021/bin/x86_64-linux:$PATH"
+
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/sean/miniconda3/bin/conda' 'shell.bash' 'hook' 2>/dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/sean/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/sean/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/sean/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+
+# # Setup Node Version Manager
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+#################
+# My shortcuts. #
+#################
+
+alias nvc='nordvpn connect'
+alias nvd='nordvpn disconnect'
+
+# Clipboard from terminal.
+
+alias cb='xclip -selection clipboard'
+
+# Useful folder vars.
+
+export CODE="/home/sean/Code_projects"
+
+# Convenient shortcuts
+
+alias c="clear"
+alias h='history'
+
+alias spc='df -h /'
+alias rp='realpath'
+alias rph="realpath ."
+alias hdsp="df -h /"
+alias cpr='sudo cp -rp'
+alias xdo='xdg-open'
+
+# Fancy rust command replacements
+
+alias lexa="exa -agl"
+alias l="lexa"
+alias cdusthere="c && dust && echo"
+alias sbtm="sudo btm"
+alias dhere='dust -d 1 .'
+
+alias bat='batcat'
+
+# Misc.
+
+alias chc="code . && c"
+alias ch="code ."
+alias cf="clang-format -i -style=file"
+alias wgets="wget --show-progress"
+
+alias ubuntu="cat /etc/upstream-release/lsb-release"
+
+# Raspberry Pi communication.
+
+function rpi {
+  ssh rpi3bp
+}
+
+alias tio0='tio /dev/ttyUSB0'
+
+# Shell shortcuts
+
+alias ebash="exec bash"
+alias b="ebash"
+alias ezsh="exec zsh"
+alias z="ezsh"
+alias efish="exec fish"
+
+alias szrc="source ~/.zshrc"
+alias ezrc="vim ~/.zshrc"
+
+alias ebrc="vim ~/.bashrc"
+alias sbrc="source ~/.bashrc && echo 'sourced ~/.bashrc'"
+
+alias ewzt="vim ~/.wezterm.lua"
+
+alias ecrc="code ~/.commonrc"
+alias evcrc='vim $HOME/.commonrc'
+alias scrc="source ~/.commonrc"
+alias vcrc="bat --language bash ~/.commonrc"
+
+# Git aliases
+
+alias gst="git status"
+alias gslog='git log -n 1 --pretty="format:[%h] %s"'
+alias gdl="git diff HEAD~ HEAD"
+alias gdh="git diff HEAD~ HEAD"
+alias gl="git log"
+alias gf="git fetch"
+alias gfs="git fetch && git status"
+alias gcl="git checkout -" # "git checkout last"
+alias ga="git add"
+alias gp="git push"
+
+# Shows gitignored files in directory along with rule.
+alias gsi='git check-ignore -v -- *'
+
+alias gsinit="git submodule update --init --recursive"
+
+# Directory change shortcuts
+
+export CODE_DIR="/home/sean/Code_projects"
+export CODE_OSS_DIR="$HOME/Code_open_source"
+
+export COS="$CODE_OSS_DIR"
+
+alias ccode='cd $CODE_DIR'
+alias ccodea='cd $CODE_DIR/A-K'
+alias ccodel='cd $CODE_DIR/L-Z'
+
+alias cdoc='cd $HOME/Documents'
+alias cdow='cd $HOME/Downloads'
+
+alias cegu='cd $CODE_DIR/wgpu_grapher/egui_wgpu_grapher'
+
+alias cnum='cd $CODE_DIR/L-Z/numerical_projects/'
+alias cgop='cd $CODE_DIR/A-Z/go_projects/'
+alias crst='cd $CODE_DIR/L-Z/rust_projects/'
+alias cclz='cd $CODE_DIR/L-Z/rust_clz_xml'
+alias cres='cd $CODE_DIR/alpha_L-Z/resumes_cover_letters'
+alias cogl='cd $CODE_DIR/L-Z/opengl_examples'
+alias ccpp='cd $CODE_DIR/A-K/cpp_ideas'
+alias cbin='cd $CODE_DIR/A-K/binary_parsing'
+alias cdsp='cd $CODE_DIR/A-K/audio_dsp'
+
+alias cqm='cd $CODE_DIR/alpha_L-Z/math_fun/quine_mccluskey'
+
+alias cnot='cd $CODE_DIR/dev_notes'
+alias cers='cd $CODE_DIR/embedded_rust'
+alias cinf='cd $CODE_DIR/info_manager'
+
+alias coss='cd $CODE_OSS_DIR'
+alias cosc='cd $CODE_OSS_DIR/c_cpp'
+alias cosg='cd $CODE_OSS_DIR/golang'
+alias copy='cd $CODE_OSS_DIR/python'
+alias cojs='cd $CODE_OSS_DIR/javascript'
+alias cogr='cd $CODE_OSS_DIR/graphics'
+
+alias cmfm='cd $CODE_OSS_DIR/c_cpp/mfem'
+alias clin='cd $CODE_OSS_DIR/c_cpp/linux'
+alias cker='cd $CODE_OSS_DIR/c_cpp/linux_dev/kernel_notes'
+alias cldv='cd $CODE_OSS_DIR/c_cpp/linux_dev'
+alias cgrub='cd $CODE_OSS_DIR/c_cpp/linux_dev/grub'
+
+export RUST_OSS_DIR="$CODE_OSS_DIR/rust"
+
+alias cors='cd $RUST_OSS_DIR'
+alias cred='cd $RUST_OSS_DIR/tryredox'
+
+export HD_OSS_DIR="/media/sean/Backup-WD_MP_Ult/Code_open_source"
+
+alias hdoss='cd $HD_OSS_DIR'
+
+function lshdoss {
+  l "$HD_OSS_DIR/$1"
+}
+
+export OBS_DIR="$HOME/Documents/Obsidian/Main"
+alias coobs='code $OBS_DIR'
+
+# Docker shortcuts
+
+alias dkc="docker compose"
+
+# Rust shortcuts
+
+alias cbr="cargo build --release"
+alias crr="cargo run --release"
+alias cto="cargo test -- --show-output"
+
+alias nfmt="cargo +nightly fmt"
+alias pre="nfmt && cargo clippy"
+
+####################
+# Shell functions. #
+####################
+
+# Clear the screen and then run the rest of the command.
+function cr {
+    c && eval "$@"
+}
+
+alias crl='cr l'
+
+# Size of all files in folders in the given directory.
+function siz {
+ du -hc -d 1 "$1"
+}
+
+function folsize {
+  folder="$1"
+  du -hc -d 0 "${folder}"
+}
+
+# search for filenames containing string
+function nsearch {
+  find . -iwholename "*$1"
+}
+
+# Split a line into words on whitespace.
+function psplit {
+    local line
+    while IFS= read -r line; do
+        echo -n "$line" | python -c "import sys; lines = [line.split() for line in sys.stdin]; [[print(word) for word in line] for line in lines]"
+    done
+}
+# e.g., cat /proc/cpuinfo | psplit | grep -P -e "(avx|sse)"
+
+function qclion {
+    (clion "$1" >/dev/null 2>&1 &)
+}
+
+alias qch="qclion ."
+
+function qrustrover {
+    (rustrover "$1" >/dev/null 2>&1 &)
+}
+
+function qrr {
+    qrustrover "$1"
+}
+
+alias qrh="qrustrover ."
+
+function qgoland {
+    { goland "$1" >/dev/null 2>&1 & }
+}
+
+alias qgh="qgoland ."
+
+function pipes {
+    pipes.sh -r 20000
+}
+
+function qbeaver {
+    export NO_AT_BRIDGE=1 && (dbeaver "$1" >/dev/null 2>&1 &)
+}
+
+function gv {
+    wgets "$1" -O "$2".mp4
+}
+
+function search {
+    find "$1" -iwholename "*$2*"
+}
+
+function grepe {
+    grep -inr "$2" --include=\*."$1"
+}
+
+################
+# Other setup. #
+################
+
+# Raspberry Pi pico variables
+
+export PICO_SDK_PATH=/home/sean/pico/pico-sdk
+export PICO_EXAMPLES_PATH=/home/sean/pico/pico-examples
+export PICO_EXTRAS_PATH=/home/sean/pico/pico-extras
+export PICO_PLAYGROUND_PATH=/home/sean/pico/pico-playground
+
+# BeaglePlay related
+
+export BEAGLE_IP="192.168.1.215"
+
+alias ssbgl='ssh sean@$BEAGLE_IP'
+
+# Notify shell user this script was run.
+echo "Common shell configuration loaded!"
+
+##########
+# Vulkan #
+##########
+
+function vulkanEnv() {
+    # Automatically setup LunarG Vulkan SDK environment.
+    source /home/sean/opt/vulkan-1.4.363.1/setup-env.sh
+}
+
+##############
+# AMD + LLVM #
+##############
+
+function llvmAiePath() {
+    export LLVM_AIE_DIR="/home/sean/Code_open_source/llvm-aie"
+    export PATH="$LLVM_AIE_DIR/build/bin:$PATH"
+}
+
+function mlirAiePath() {
+    export MLIR_AIE_DIR="/home/sean/Code_open_source/mlir-aie-2"
+    export PATH="$MLIR_AIE_DIR/install/bin:$PATH"
+}
+
+function aiePaths() {
+    llvmAiePath
+    mlirAiePath
+}
